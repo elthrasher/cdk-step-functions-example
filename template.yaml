@@ -1,0 +1,418 @@
+Resources:
+  assignCaseFunctionServiceRole56B929C6:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: "2012-10-17"
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+    Metadata:
+      aws:cdk:path: CdkStepStack/assignCaseFunction/ServiceRole/Resource
+  assignCaseFunction59553755:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParameters2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2bS3Bucket1F519AEE
+        S3Key:
+          Fn::Join:
+            - ""
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2bS3VersionKeyFECFC34F
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2bS3VersionKeyFECFC34F
+      Handler: assign-case.handler
+      Role:
+        Fn::GetAtt:
+          - assignCaseFunctionServiceRole56B929C6
+          - Arn
+      Runtime: nodejs12.x
+    DependsOn:
+      - assignCaseFunctionServiceRole56B929C6
+    Metadata:
+      aws:cdk:path: CdkStepStack/assignCaseFunction/Resource
+      aws:asset:path: /Users/matt.morgan/mine/cdk-step/build/lib/lambda
+      aws:asset:property: Code
+  closeCaseFunctionServiceRole0F6F67D6:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: "2012-10-17"
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+    Metadata:
+      aws:cdk:path: CdkStepStack/closeCaseFunction/ServiceRole/Resource
+  closeCaseFunctionF5FEF3D0:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParameters2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2bS3Bucket1F519AEE
+        S3Key:
+          Fn::Join:
+            - ""
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2bS3VersionKeyFECFC34F
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2bS3VersionKeyFECFC34F
+      Handler: close-case.handler
+      Role:
+        Fn::GetAtt:
+          - closeCaseFunctionServiceRole0F6F67D6
+          - Arn
+      Runtime: nodejs12.x
+    DependsOn:
+      - closeCaseFunctionServiceRole0F6F67D6
+    Metadata:
+      aws:cdk:path: CdkStepStack/closeCaseFunction/Resource
+      aws:asset:path: /Users/matt.morgan/mine/cdk-step/build/lib/lambda
+      aws:asset:property: Code
+  escalateCaseFunctionServiceRole1BAB0E40:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: "2012-10-17"
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+    Metadata:
+      aws:cdk:path: CdkStepStack/escalateCaseFunction/ServiceRole/Resource
+  escalateCaseFunction2DE16F3F:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParameters2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2bS3Bucket1F519AEE
+        S3Key:
+          Fn::Join:
+            - ""
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2bS3VersionKeyFECFC34F
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2bS3VersionKeyFECFC34F
+      Handler: escalate-case.handler
+      Role:
+        Fn::GetAtt:
+          - escalateCaseFunctionServiceRole1BAB0E40
+          - Arn
+      Runtime: nodejs12.x
+    DependsOn:
+      - escalateCaseFunctionServiceRole1BAB0E40
+    Metadata:
+      aws:cdk:path: CdkStepStack/escalateCaseFunction/Resource
+      aws:asset:path: /Users/matt.morgan/mine/cdk-step/build/lib/lambda
+      aws:asset:property: Code
+  openCaseFunctionServiceRole5FA58BBF:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: "2012-10-17"
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+    Metadata:
+      aws:cdk:path: CdkStepStack/openCaseFunction/ServiceRole/Resource
+  openCaseFunction64DF09DE:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParameters2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2bS3Bucket1F519AEE
+        S3Key:
+          Fn::Join:
+            - ""
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2bS3VersionKeyFECFC34F
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2bS3VersionKeyFECFC34F
+      Handler: open-case.handler
+      Role:
+        Fn::GetAtt:
+          - openCaseFunctionServiceRole5FA58BBF
+          - Arn
+      Runtime: nodejs12.x
+    DependsOn:
+      - openCaseFunctionServiceRole5FA58BBF
+    Metadata:
+      aws:cdk:path: CdkStepStack/openCaseFunction/Resource
+      aws:asset:path: /Users/matt.morgan/mine/cdk-step/build/lib/lambda
+      aws:asset:property: Code
+  workOnCaseFunctionServiceRole271B4440:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: "2012-10-17"
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+    Metadata:
+      aws:cdk:path: CdkStepStack/workOnCaseFunction/ServiceRole/Resource
+  workOnCaseFunction65F13148:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParameters2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2bS3Bucket1F519AEE
+        S3Key:
+          Fn::Join:
+            - ""
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2bS3VersionKeyFECFC34F
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2bS3VersionKeyFECFC34F
+      Handler: work-on-case.handler
+      Role:
+        Fn::GetAtt:
+          - workOnCaseFunctionServiceRole271B4440
+          - Arn
+      Runtime: nodejs12.x
+    DependsOn:
+      - workOnCaseFunctionServiceRole271B4440
+    Metadata:
+      aws:cdk:path: CdkStepStack/workOnCaseFunction/Resource
+      aws:asset:path: /Users/matt.morgan/mine/cdk-step/build/lib/lambda
+      aws:asset:property: Code
+  StateMachineRoleB840431D:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+                Fn::Join:
+                  - ""
+                  - - states.
+                    - Ref: AWS::Region
+                    - .amazonaws.com
+        Version: "2012-10-17"
+    Metadata:
+      aws:cdk:path: CdkStepStack/StateMachine/Role/Resource
+  StateMachineRoleDefaultPolicyDF1E6607:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action: lambda:InvokeFunction
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - openCaseFunction64DF09DE
+                - Arn
+          - Action: lambda:InvokeFunction
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - assignCaseFunction59553755
+                - Arn
+          - Action: lambda:InvokeFunction
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - workOnCaseFunction65F13148
+                - Arn
+          - Action: lambda:InvokeFunction
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - closeCaseFunctionF5FEF3D0
+                - Arn
+          - Action: lambda:InvokeFunction
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - escalateCaseFunction2DE16F3F
+                - Arn
+        Version: "2012-10-17"
+      PolicyName: StateMachineRoleDefaultPolicyDF1E6607
+      Roles:
+        - Ref: StateMachineRoleB840431D
+    Metadata:
+      aws:cdk:path: CdkStepStack/StateMachine/Role/DefaultPolicy/Resource
+  StateMachine2E01A3A5:
+    Type: AWS::StepFunctions::StateMachine
+    Properties:
+      DefinitionString:
+        Fn::Join:
+          - ""
+          - - '{"StartAt":"Open Case","States":{"Open Case":{"Next":"Assign Case","Type":"Task","Resource":"'
+            - Fn::GetAtt:
+                - openCaseFunction64DF09DE
+                - Arn
+            - '"},"Assign Case":{"Next":"Work On Case","Type":"Task","Resource":"'
+            - Fn::GetAtt:
+                - assignCaseFunction59553755
+                - Arn
+            - '"},"Work On Case":{"Next":"Is Case Resolved","Type":"Task","Resource":"'
+            - Fn::GetAtt:
+                - workOnCaseFunction65F13148
+                - Arn
+            - '"},"Is Case Resolved":{"Type":"Choice","Choices":[{"Variable":"$.Status","NumericEquals":1,"Next":"Close Case"},{"Variable":"$.Status","NumericEquals":0,"Next":"Escalate Case"}]},"Close Case":{"End":true,"Type":"Task","Resource":"'
+            - Fn::GetAtt:
+                - closeCaseFunctionF5FEF3D0
+                - Arn
+            - '"},"Escalate Case":{"Next":"Fail","Type":"Task","Resource":"'
+            - Fn::GetAtt:
+                - escalateCaseFunction2DE16F3F
+                - Arn
+            - '"},"Fail":{"Type":"Fail","Cause":"Engage Tier 2 Support"}}}'
+      RoleArn:
+        Fn::GetAtt:
+          - StateMachineRoleB840431D
+          - Arn
+    Metadata:
+      aws:cdk:path: CdkStepStack/StateMachine/Resource
+  CDKMetadata:
+    Type: AWS::CDK::Metadata
+    Properties:
+      Modules: aws-cdk=1.19.0,@aws-cdk/assets=1.19.0,@aws-cdk/aws-applicationautoscaling=1.19.0,@aws-cdk/aws-autoscaling=1.19.0,@aws-cdk/aws-autoscaling-common=1.19.0,@aws-cdk/aws-autoscaling-hooktargets=1.19.0,@aws-cdk/aws-cloudformation=1.19.0,@aws-cdk/aws-cloudwatch=1.19.0,@aws-cdk/aws-ec2=1.19.0,@aws-cdk/aws-ecr=1.19.0,@aws-cdk/aws-ecr-assets=1.19.0,@aws-cdk/aws-ecs=1.19.0,@aws-cdk/aws-elasticloadbalancingv2=1.19.0,@aws-cdk/aws-events=1.19.0,@aws-cdk/aws-iam=1.19.0,@aws-cdk/aws-kms=1.19.0,@aws-cdk/aws-lambda=1.19.0,@aws-cdk/aws-logs=1.19.0,@aws-cdk/aws-s3=1.19.0,@aws-cdk/aws-s3-assets=1.19.0,@aws-cdk/aws-servicediscovery=1.19.0,@aws-cdk/aws-sns=1.19.0,@aws-cdk/aws-sns-subscriptions=1.19.0,@aws-cdk/aws-sqs=1.19.0,@aws-cdk/aws-ssm=1.19.0,@aws-cdk/aws-stepfunctions=1.19.0,@aws-cdk/aws-stepfunctions-tasks=1.19.0,@aws-cdk/core=1.19.0,@aws-cdk/cx-api=1.19.0,@aws-cdk/region-info=1.19.0,jsii-runtime=node.js/v12.14.0
+    Condition: CDKMetadataAvailable
+Parameters:
+  AssetParameters2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2bS3Bucket1F519AEE:
+    Type: String
+    Description: S3 bucket for asset "2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2b"
+  AssetParameters2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2bS3VersionKeyFECFC34F:
+    Type: String
+    Description: S3 key for asset version "2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2b"
+  AssetParameters2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2bArtifactHash38F59E3B:
+    Type: String
+    Description: Artifact hash for asset "2f4a46238bb0d8063225f39dca9c261e3ca770c5a299304e6210573ac6774e2b"
+Conditions:
+  CDKMetadataAvailable:
+    Fn::Or:
+      - Fn::Or:
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-east-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-northeast-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-northeast-2
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-south-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-southeast-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-southeast-2
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ca-central-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - cn-north-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - cn-northwest-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-central-1
+      - Fn::Or:
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-north-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-west-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-west-2
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-west-3
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - me-south-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - sa-east-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - us-east-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - us-east-2
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - us-west-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - us-west-2
+

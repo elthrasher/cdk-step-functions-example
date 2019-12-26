@@ -1,14 +1,16 @@
-# Welcome to your CDK TypeScript project!
+# Learning CDK and Step Functions
 
-This is a blank project for TypeScript development with CDK.
+I started with this highly useful but slightly outdated tutorial [Create a Serverless Workflow](https://aws.amazon.com/getting-started/tutorials/create-a-serverless-workflow-step-functions-lambda/).
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+I rewrote it in [cdk](https://aws.amazon.com/cdk/).
 
 ## Useful commands
 
- * `npm run build`   compile typescript to js
- * `npm run watch`   watch for changes and compile
- * `npm run test`    perform the jest unit tests
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk synth`       emits the synthesized CloudFormation template
+- `npm install` do this first
+- `npm run lint` check your style
+- `npm run build` transpile TypeScript
+- `npm run watch` watch for changes
+- `npm test` perform the jest unit tests
+- `cdk deploy` deploy this stack to your default AWS account/region
+- `cdk diff` compare deployed stack with current state
+- `cdk synth` emits the synthesized CloudFormation template

@@ -1,6 +1,19 @@
+# Editors
+.vscode
+
+# Build artifacts
 *.js
-!jest.config.js
 *.d.ts
+
+# Exceptions
+!.eslintrc.js
+!.prettierrc.js
+!jest.config.js
+
+# Output Dir
+build
+
+# Installed dependencies
 node_modules
 
 # CDK asset staging directory
