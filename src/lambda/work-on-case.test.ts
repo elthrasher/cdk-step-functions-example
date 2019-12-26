@@ -1,11 +1,8 @@
+import input from '../../inputs/workOnCase.json';
 import { handler } from './work-on-case';
 
 test('Work On Case Function Handler - Resolved', async () => {
   global.Math.random = (): number => 0.5;
-  const input = {
-    Case: '001',
-    Message: 'Case 001: opened...assigned...',
-  };
   const result = await handler(input);
   expect(result).toEqual({
     Case: '001',
@@ -16,10 +13,6 @@ test('Work On Case Function Handler - Resolved', async () => {
 
 test('Work On Case Function Handler - Unresolved', async () => {
   global.Math.random = (): number => 0;
-  const input = {
-    Case: '001',
-    Message: 'Case 001: opened...assigned...',
-  };
   const result = await handler(input);
   expect(result).toEqual({
     Case: '001',

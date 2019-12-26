@@ -14,3 +14,8 @@ I rewrote it in [cdk](https://aws.amazon.com/cdk/).
 - `cdk deploy` deploy this stack to your default AWS account/region
 - `cdk diff` compare deployed stack with current state
 - `cdk synth` emits the synthesized CloudFormation template
+
+## Lambdas via SAM
+
+- `cdk synth --no-staging > template.yaml` to create the template for SAM.
+- `sam local invoke <FN name from template.yaml> -e ./inputs/<JSON input>` to run the function locally.
