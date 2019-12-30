@@ -10,7 +10,7 @@ export const handler = async (event: ICase): Promise<ICase> => {
   if (myCaseStatus == 1) {
     // Support case has been resolved
     myMessage = myMessage + 'resolved...';
-  } else if (myCaseStatus == 0) {
+  } else {
     // Support case is still open
     myMessage = myMessage + 'unresolved...';
   }
