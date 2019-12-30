@@ -13,6 +13,8 @@
 # Output Dir
 build
 
+coverage
+
 # Installed dependencies
 node_modules
 
