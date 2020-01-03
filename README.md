@@ -4,6 +4,8 @@ I started with this highly useful but slightly outdated tutorial [Create a Serve
 
 I rewrote it in [cdk](https://aws.amazon.com/cdk/).
 
+Read my post on [dev.to](https://dev.to/elthrasher/exploring-aws-cdk-step-functions-1d1e).
+
 ## Useful commands
 
 - `npm install` do this first
