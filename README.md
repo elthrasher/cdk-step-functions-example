@@ -13,6 +13,7 @@ Read my post on [dev.to](https://dev.to/elthrasher/exploring-aws-cdk-step-functi
 - `npm run build` transpile TypeScript
 - `npm run watch` watch for changes
 - `npm test` perform the jest unit tests
+- `cdk bootstrap` the first time only to prep your environment
 - `cdk deploy` deploy this stack to your default AWS account/region
 - `cdk diff` compare deployed stack with current state
 - `cdk synth` emits the synthesized CloudFormation template
