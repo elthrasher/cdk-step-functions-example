@@ -39,6 +39,6 @@
     "@aws-cdk/aws-stepfunctions": "^1.27.0",
     "@aws-cdk/aws-stepfunctions-tasks": "^1.27.0",
     "@aws-cdk/core": "^1.27.0",
-    "source-map-support": "^0.5.18"
+    "source-map-support": "^0.5.19"
   }
 }
