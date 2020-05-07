@@ -18,7 +18,7 @@
     "watch": "tsc -w"
   },
   "devDependencies": {
-    "@aws-cdk/assert": "^1.27.0",
+    "@aws-cdk/assert": "^1.37.0",
     "@types/jest": "^25.2.1",
     "@types/node": "^12.12.38",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
@@ -35,10 +35,10 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@aws-cdk/aws-lambda": "^1.27.0",
-    "@aws-cdk/aws-stepfunctions": "^1.27.0",
-    "@aws-cdk/aws-stepfunctions-tasks": "^1.27.0",
-    "@aws-cdk/core": "^1.27.0",
+    "@aws-cdk/aws-lambda": "^1.37.0",
+    "@aws-cdk/aws-stepfunctions": "^1.37.0",
+    "@aws-cdk/aws-stepfunctions-tasks": "^1.37.0",
+    "@aws-cdk/core": "^1.37.0",
     "source-map-support": "^0.5.19"
   }
 }
