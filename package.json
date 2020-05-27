@@ -12,6 +12,7 @@
   "scripts": {
     "clean": "rimraf cdk.out",
     "lint": "eslint --ext .ts .",
+    "synth": "cdk synth --no-staging > template.yaml",
     "test": "jest"
   },
   "devDependencies": {
