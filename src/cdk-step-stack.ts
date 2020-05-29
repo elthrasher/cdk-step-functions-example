@@ -1,4 +1,5 @@
-import { AssetCode, Function, Runtime } from '@aws-cdk/aws-lambda';
+import { Runtime } from '@aws-cdk/aws-lambda';
+import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs';
 import { Chain, Choice, Condition, Fail, StateMachine, Task } from '@aws-cdk/aws-stepfunctions';
 import { InvokeFunction } from '@aws-cdk/aws-stepfunctions-tasks';
 import { Construct, Stack, StackProps } from '@aws-cdk/core';
@@ -9,33 +10,33 @@ export class CdkStepStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    const assignCaseLambda = new Function(this, 'assignCaseFunction', {
-      code: new AssetCode(lambdaPath),
-      handler: 'assign-case.handler',
+    const assignCaseLambda = new NodejsFunction(this, 'assignCaseFunction', {
+      entry: `${lambdaPath}/assign-case.ts`,
+      handler: 'handler',
       runtime: Runtime.NODEJS_12_X,
     });
 
-    const closeCaseLambda = new Function(this, 'closeCaseFunction', {
-      code: new AssetCode(lambdaPath),
-      handler: 'close-case.handler',
+    const closeCaseLambda = new NodejsFunction(this, 'closeCaseFunction', {
+      entry: `${lambdaPath}/close-case.ts`,
+      handler: 'handler',
       runtime: Runtime.NODEJS_12_X,
     });
 
-    const escalateCaseLambda = new Function(this, 'escalateCaseFunction', {
-      code: new AssetCode(lambdaPath),
-      handler: 'escalate-case.handler',
+    const escalateCaseLambda = new NodejsFunction(this, 'escalateCaseFunction', {
+      entry: `${lambdaPath}/escalate-case.ts`,
+      handler: 'handler',
       runtime: Runtime.NODEJS_12_X,
     });
 
-    const openCaseLambda = new Function(this, 'openCaseFunction', {
-      code: new AssetCode(lambdaPath),
-      handler: 'open-case.handler',
+    const openCaseLambda = new NodejsFunction(this, 'openCaseFunction', {
+      entry: `${lambdaPath}/open-case.ts`,
+      handler: 'handler',
       runtime: Runtime.NODEJS_12_X,
     });
 
-    const workOnCaseLambda = new Function(this, 'workOnCaseFunction', {
-      code: new AssetCode(lambdaPath),
-      handler: 'work-on-case.handler',
+    const workOnCaseLambda = new NodejsFunction(this, 'workOnCaseFunction', {
+      entry: `${lambdaPath}/work-on-case.ts`,
+      handler: 'handler',
       runtime: Runtime.NODEJS_12_X,
     });
 
