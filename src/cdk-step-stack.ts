@@ -1,7 +1,7 @@
 import { Runtime } from '@aws-cdk/aws-lambda';
 import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs';
-import { Chain, Choice, Condition, Fail, StateMachine, Task } from '@aws-cdk/aws-stepfunctions';
-import { InvokeFunction } from '@aws-cdk/aws-stepfunctions-tasks';
+import { Chain, Choice, Condition, Fail, StateMachine } from '@aws-cdk/aws-stepfunctions';
+import { LambdaInvoke } from '@aws-cdk/aws-stepfunctions-tasks';
 import { Construct, Stack, StackProps } from '@aws-cdk/core';
 
 const lambdaPath = `${__dirname}/lambda`;
@@ -40,24 +40,24 @@ export class CdkStepStack extends Stack {
       runtime: Runtime.NODEJS_12_X,
     });
 
-    const assignCase = new Task(this, 'Assign Case', {
-      task: new InvokeFunction(assignCaseLambda),
+    const assignCase = new LambdaInvoke(this, 'Assign Case', {
+      lambdaFunction: assignCaseLambda,
     });
 
-    const closeCase = new Task(this, 'Close Case', {
-      task: new InvokeFunction(closeCaseLambda),
+    const closeCase = new LambdaInvoke(this, 'Close Case', {
+      lambdaFunction: closeCaseLambda,
     });
 
-    const escalateCase = new Task(this, 'Escalate Case', {
-      task: new InvokeFunction(escalateCaseLambda),
+    const escalateCase = new LambdaInvoke(this, 'Escalate Case', {
+      lambdaFunction: escalateCaseLambda,
     });
 
-    const openCase = new Task(this, 'Open Case', {
-      task: new InvokeFunction(openCaseLambda),
+    const openCase = new LambdaInvoke(this, 'Open Case', {
+      lambdaFunction: openCaseLambda,
     });
 
-    const workOnCase = new Task(this, 'Work On Case', {
-      task: new InvokeFunction(workOnCaseLambda),
+    const workOnCase = new LambdaInvoke(this, 'Work On Case', {
+      lambdaFunction: workOnCaseLambda,
     });
 
     const jobFailed = new Fail(this, 'Fail', {
