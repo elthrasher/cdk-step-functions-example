@@ -10,34 +10,35 @@ export class CdkStepStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    const assignCaseLambda = new NodejsFunction(this, 'assignCaseFunction', {
-      entry: `${lambdaPath}/assign-case.ts`,
+    const lambdaProps = {
+      bundling: { minify: true, sourceMap: true, target: 'node12.19.0' },
       handler: 'handler',
       runtime: Runtime.NODEJS_12_X,
+    };
+
+    const assignCaseLambda = new NodejsFunction(this, 'assignCaseFunction', {
+      ...lambdaProps,
+      entry: `${lambdaPath}/assign-case.ts`,
     });
 
     const closeCaseLambda = new NodejsFunction(this, 'closeCaseFunction', {
+      ...lambdaProps,
       entry: `${lambdaPath}/close-case.ts`,
-      handler: 'handler',
-      runtime: Runtime.NODEJS_12_X,
     });
 
     const escalateCaseLambda = new NodejsFunction(this, 'escalateCaseFunction', {
+      ...lambdaProps,
       entry: `${lambdaPath}/escalate-case.ts`,
-      handler: 'handler',
-      runtime: Runtime.NODEJS_12_X,
     });
 
     const openCaseLambda = new NodejsFunction(this, 'openCaseFunction', {
+      ...lambdaProps,
       entry: `${lambdaPath}/open-case.ts`,
-      handler: 'handler',
-      runtime: Runtime.NODEJS_12_X,
     });
 
     const workOnCaseLambda = new NodejsFunction(this, 'workOnCaseFunction', {
+      ...lambdaProps,
       entry: `${lambdaPath}/work-on-case.ts`,
-      handler: 'handler',
-      runtime: Runtime.NODEJS_12_X,
     });
 
     const assignCase = new LambdaInvoke(this, 'Assign Case', {
