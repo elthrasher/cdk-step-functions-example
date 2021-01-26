@@ -19,7 +19,7 @@
     "@aws-cdk/assert": "1.82.0",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.22",
-    "@typescript-eslint/eslint-plugin": "^4.14.0",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
     "@typescript-eslint/parser": "^4.14.1",
     "aws-cdk": "1.85.0",
     "esbuild": "^0.8.34",
