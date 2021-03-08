@@ -22,7 +22,7 @@
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
     "aws-cdk": "1.91.0",
-    "esbuild": "^0.8.55",
+    "esbuild": "^0.8.57",
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-prettier": "^3.3.1",
