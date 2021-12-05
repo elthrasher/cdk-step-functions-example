@@ -22,6 +22,5 @@ jobs:
       - name: Run a multi-line script
         run: |
           npm ci
-          npm run lint
           npm t
           npm run synth

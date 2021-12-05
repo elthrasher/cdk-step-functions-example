@@ -14,6 +14,7 @@
     "deploy": "cdk deploy --require-approval=never",
     "destroy": "cdk destroy --force",
     "lint": "eslint --ext .ts .",
+    "pretest": "npm run lint",
     "synth": "cdk synth --no-staging > template.yaml",
     "test": "jest"
   },
