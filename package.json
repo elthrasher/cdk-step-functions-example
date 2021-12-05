@@ -11,11 +11,11 @@
   },
   "scripts": {
     "clean": "rimraf cdk.out",
-    "deploy": "cdk deploy --require-approval=never",
-    "destroy": "cdk destroy --force",
+    "deploy": "npx cdk deploy --require-approval=never",
+    "destroy": "npx cdk destroy --force",
     "lint": "eslint --ext .ts .",
     "pretest": "npm run lint",
-    "synth": "cdk synth --no-staging > template.yaml",
+    "synth": "npx cdk synth --no-staging > template.yaml",
     "test": "jest"
   },
   "devDependencies": {
