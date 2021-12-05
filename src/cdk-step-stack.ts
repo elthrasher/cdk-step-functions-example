@@ -1,8 +1,9 @@
-import { Runtime } from '@aws-cdk/aws-lambda';
-import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs';
-import { Chain, Choice, Condition, Fail, StateMachine } from '@aws-cdk/aws-stepfunctions';
-import { LambdaInvoke } from '@aws-cdk/aws-stepfunctions-tasks';
-import { Construct, Stack, StackProps } from '@aws-cdk/core';
+import { Runtime } from 'aws-cdk-lib/aws-lambda';
+import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
+import { Chain, Choice, Condition, Fail, StateMachine } from 'aws-cdk-lib/aws-stepfunctions';
+import { LambdaInvoke } from 'aws-cdk-lib/aws-stepfunctions-tasks';
+import { Stack, StackProps } from 'aws-cdk-lib/core';
+import { Construct } from 'constructs';
 
 const lambdaPath = `${__dirname}/lambda`;
 
@@ -11,9 +12,8 @@ export class CdkStepStack extends Stack {
     super(scope, id, props);
 
     const lambdaProps = {
-      bundling: { minify: true, sourceMap: true, target: 'node12.19.0' },
       handler: 'handler',
-      runtime: Runtime.NODEJS_12_X,
+      runtime: Runtime.NODEJS_14_X,
     };
 
     const assignCaseLambda = new NodejsFunction(this, 'assignCaseFunction', {
@@ -43,22 +43,27 @@ export class CdkStepStack extends Stack {
 
     const assignCase = new LambdaInvoke(this, 'Assign Case', {
       lambdaFunction: assignCaseLambda,
+      outputPath: '$.Payload',
     });
 
     const closeCase = new LambdaInvoke(this, 'Close Case', {
       lambdaFunction: closeCaseLambda,
+      outputPath: '$.Payload',
     });
 
     const escalateCase = new LambdaInvoke(this, 'Escalate Case', {
       lambdaFunction: escalateCaseLambda,
+      outputPath: '$.Payload',
     });
 
     const openCase = new LambdaInvoke(this, 'Open Case', {
       lambdaFunction: openCaseLambda,
+      outputPath: '$.Payload',
     });
 
     const workOnCase = new LambdaInvoke(this, 'Work On Case', {
       lambdaFunction: workOnCaseLambda,
+      outputPath: '$.Payload',
     });
 
     const jobFailed = new Fail(this, 'Fail', {
