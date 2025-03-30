@@ -1,1 +1,4 @@
-{ "Case": "001", "Message": "Case 001: opened..." }
+{
+  "id": "001",
+  "message": "Case 001: opened..."
+}

@@ -8,9 +8,9 @@ test('Step Functions for Cases', () => {
   const stack = new CdkStepStack(app, 'MyTestStack');
   const template = Template.fromStack(stack);
 
-  template.resourceCountIs('AWS::IAM::Policy', 1);
-  template.resourceCountIs('AWS::IAM::Role', 6);
-  template.resourceCountIs('AWS::Lambda::Function', 5);
+  template.resourceCountIs('AWS::IAM::Policy', 2);
+  template.resourceCountIs('AWS::IAM::Role', 7);
+  template.resourceCountIs('AWS::Lambda::Function', 6);
   template.resourceCountIs('AWS::StepFunctions::StateMachine', 1);
 
   expect(template.toJSON()).toMatchSnapshot();

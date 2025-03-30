@@ -1,6 +1,7 @@
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
-import { Chain, Choice, Condition, Fail, StateMachine } from 'aws-cdk-lib/aws-stepfunctions';
+import { RetentionDays } from 'aws-cdk-lib/aws-logs';
+import { Chain, Choice, Condition, DefinitionBody, Fail, StateMachine, TaskInput } from 'aws-cdk-lib/aws-stepfunctions';
 import { LambdaInvoke } from 'aws-cdk-lib/aws-stepfunctions-tasks';
 import { Stack, StackProps } from 'aws-cdk-lib/core';
 import { Construct } from 'constructs';
@@ -12,8 +13,8 @@ export class CdkStepStack extends Stack {
     super(scope, id, props);
 
     const lambdaProps = {
-      handler: 'handler',
-      runtime: Runtime.NODEJS_14_X,
+      logRetention: RetentionDays.ONE_DAY,
+      runtime: Runtime.NODEJS_LATEST,
     };
 
     const assignCaseLambda = new NodejsFunction(this, 'assignCaseFunction', {
@@ -41,48 +42,61 @@ export class CdkStepStack extends Stack {
       entry: `${lambdaPath}/work-on-case.ts`,
     });
 
-    const assignCase = new LambdaInvoke(this, 'Assign Case', {
+    const jsonataprops = {
+      assign: {
+        message: '{% $states.result.Payload.message %}',
+        status: '{% $states.result.Payload.status %}',
+      },
+      payload: TaskInput.fromObject({
+        caseId: '{% $caseId %}',
+        message: '{% $message %}',
+        status: '{% $status %}',
+      }),
+    };
+
+    const assignCase = LambdaInvoke.jsonata(this, 'Assign Case', {
+      ...jsonataprops,
       lambdaFunction: assignCaseLambda,
-      outputPath: '$.Payload',
     });
 
-    const closeCase = new LambdaInvoke(this, 'Close Case', {
-      lambdaFunction: closeCaseLambda,
-      outputPath: '$.Payload',
-    });
+    const closeCase = LambdaInvoke.jsonata(this, 'Close Case', { ...jsonataprops, lambdaFunction: closeCaseLambda });
 
-    const escalateCase = new LambdaInvoke(this, 'Escalate Case', {
+    const escalateCase = LambdaInvoke.jsonata(this, 'Escalate Case', {
+      ...jsonataprops,
       lambdaFunction: escalateCaseLambda,
-      outputPath: '$.Payload',
     });
 
-    const openCase = new LambdaInvoke(this, 'Open Case', {
+    const openCase = LambdaInvoke.jsonata(this, 'Open Case', {
+      assign: {
+        caseId: '{% $states.input.inputCaseID %}',
+        message: '{% $states.result.Payload.message %}',
+        status: '{% $states.result.Payload.status %}',
+      },
       lambdaFunction: openCaseLambda,
-      outputPath: '$.Payload',
     });
 
-    const workOnCase = new LambdaInvoke(this, 'Work On Case', {
+    const workOnCase = LambdaInvoke.jsonata(this, 'Work On Case', {
+      ...jsonataprops,
       lambdaFunction: workOnCaseLambda,
-      outputPath: '$.Payload',
     });
 
-    const jobFailed = new Fail(this, 'Fail', {
+    const jobFailed = Fail.jsonata(this, 'Fail', {
       cause: 'Engage Tier 2 Support',
     });
 
-    const isComplete = new Choice(this, 'Is Case Resolved');
+    const isComplete = Choice.jsonata(this, 'Is Case Resolved');
 
     const chain = Chain.start(openCase)
       .next(assignCase)
       .next(workOnCase)
       .next(
         isComplete
-          .when(Condition.numberEquals('$.Status', 1), closeCase)
-          .when(Condition.numberEquals('$.Status', 0), escalateCase.next(jobFailed)),
+          .when(Condition.jsonata('{% $status = "closed" %}'), closeCase)
+          .when(Condition.jsonata('{% $status = "escalated" %}'), escalateCase.next(jobFailed)),
       );
 
     new StateMachine(this, 'StateMachine', {
-      definition: chain,
+      definitionBody: DefinitionBody.fromChainable(chain),
     });
   }
 }

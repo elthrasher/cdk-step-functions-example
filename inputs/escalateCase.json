@@ -1,1 +1,5 @@
-{ "Case": "001", "Message": "Case 001: opened...assigned...unresolved...", "Status": 0 }
+{
+  "id": "001",
+  "message": "Case 001: opened...assigned...unresolved...",
+  "status": "escalated"
+}

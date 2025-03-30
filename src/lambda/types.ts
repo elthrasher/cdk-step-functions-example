@@ -1,7 +1,7 @@
 export interface ICase {
-  Case: string;
-  Message: string;
-  Status?: number;
+  id: string;
+  message: string;
+  status?: string;
 }
 
 export interface IInput {
